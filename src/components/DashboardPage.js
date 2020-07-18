@@ -6,6 +6,7 @@ const DashboardPage = () => (
   <div>
     <p>Placeholder for the final dashboard.  For now just links to other apps</p>
     <Link className="button" to="/dashboard360">360 Application</Link>
+    <Link className="button" to="/">Skills Application</Link>
   </div>
 );
 
