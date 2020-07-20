@@ -1,8 +1,8 @@
 import database from '../firebase/firebase';
 
-export const addSkillUser = (user) => ({
+export const addSkillUser = (skillUser) => ({
     type: 'ADD_SKILL_USER',
-    user
+    skillUser
 });
 
 export const startAddSkillUser = (userData = {}) => {
