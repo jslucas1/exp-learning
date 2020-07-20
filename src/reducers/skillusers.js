@@ -2,23 +2,23 @@ const skillUsersReducerDefaultState = [];
 
 const skillUsersReducer = (state = skillUsersReducerDefaultState, action) => {
     switch(action.type) {
-        case 'ADD_USER':
-            return [...state, action.user]
-        case 'REMOVE_USER':
+        case 'ADD_SKILL_USER':
+            return [...state, action.skillUser]
+        case 'REMOVE_SKILL_USER':
             return state.filter(({id}) => id !== action.id);
-        case 'EDIT_USER':
-            return state.map((user) => {
-                if(user.id === action.id){
+        case 'EDIT_SKILL_USER':
+            return state.map((skillUser) => {
+                if(skillUser.id === action.id){
                     return {
-                        ...user,
+                        ...skillUser,
                         ...action.updates
                     }
                 } else {
-                    return user;
+                    return skillUser;
                 }
             });
-        case 'SET_USERS':
-            return action.users;
+        case 'SET_SKILL_USERS':
+            return action.skillUsers;
         default:
             return state;
     }
