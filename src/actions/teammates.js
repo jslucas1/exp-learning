@@ -14,7 +14,7 @@ export const startAddTeammate = (teammateData = {}) => {
         } = teammateData;
         const teammate = {teammateName, teammateEmail};
         
-        return database.ref(`users/${uid}/teammates`).push(user).then((ref)=>{
+        return database.ref(`users/${uid}/teammates`).push(teammate).then((ref)=>{
             dispatch(addTeammate({
                 id: ref.key,
                 ...teammate

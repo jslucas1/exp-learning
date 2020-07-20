@@ -18,7 +18,7 @@ export default class TeammateForm extends React.Component {
     };
     
     onTeammateEmailChange = (e) => {
-        const TeammateEmail = e.target.value;
+        const teammateEmail = e.target.value;
         this.setState(() => ({teammateEmail}));
     };
 
