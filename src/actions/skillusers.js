@@ -14,7 +14,7 @@ export const startAddSkillUser = (userData = {}) => {
         } = userData;
         const user = {userName, userEmail};
         
-        return database.ref(`skills/${uid}`).push(user).then((ref)=>{
+        return database.ref(`SkillUsers/${uid}`).push(user).then((ref)=>{
             dispatch(addSkillUser({
                 id: ref.key,
                 ...user
@@ -31,7 +31,7 @@ export const removeSkillUser = ({id} = {}) => ({
 export const startRemoveSkillUser = ({id} = {}) => {
     return (dispatch, getState) => {
         const uid=getState().auth.uid;
-        return database.ref(`skills/${id}`).remove().then(() => {
+        return database.ref(`SkillUsers/${uid}`).remove().then(() => {
             dispatch(removeSkillUser({id}));
         });
     }
@@ -46,7 +46,7 @@ export const editSkillUser = (id, updates) => ({
 export const startEditSkillUser = (id, updates) => {
     return (dispatch, getState) => {
         const uid=getState().auth.uid;
-        return database.ref(`skills/${id}`).update(updates).then(() => {
+        return database.ref(`SkillUsers/${id}`).update(updates).then(() => {
             dispatch(editSkillUser(id, updates));
         });
     }
@@ -61,7 +61,7 @@ export const startSetSkillUsers = () => {
     console.log('made it to startSetUsers');
     return (dispatch, getState) => {
         const uid=getState().auth.uid;
-        return database.ref(`skills`).once('value').then((snapshot) => {
+        return database.ref(`SkillUsers`).once('value').then((snapshot) => {
             const users = [];
 
             snapshot.forEach((childSnapshot) => {
@@ -75,3 +75,46 @@ export const startSetSkillUsers = () => {
         });
     }
 };
+
+export const addSkill = (userID,{skillName, proficiency, goalProf}) => ({
+    type: 'ADD_SKILL',
+    userID,
+    skillName,
+    proficiency,
+    goalProf
+});
+export const startAddSkill = (userData = {}) => {
+    return (dispatch, getState) => {
+        const uid=getState().auth.uid;
+        const {       
+            userName = '', 
+            skill:{
+            skillName='',
+            proficiency= 0,
+            goalProf=0,
+            note= '',
+            }
+        } = userData;
+        const user = {userName, skill:{skillName, proficiency, goalProf, note}};
+        
+        return database.ref(`SkillUsers/${uid}/skill`).push(user).then((ref)=>{
+            dispatch(addSkill({
+                id: ref.key,
+                ...user
+            }));
+        });
+    };
+};
+
+export const editSkill = (userID,{skillName, updates}) => ({
+    type: 'EDIT_SKILL',
+    userID,
+    skillName,
+    updates
+});
+
+export const removeSkill = (userID,{skillName}) => ({
+    type: 'REMOVE_SKILL',
+    userID,
+    skillName
+});

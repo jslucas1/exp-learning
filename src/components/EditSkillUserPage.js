@@ -9,7 +9,7 @@ export class EditSkillUserPage extends React.Component {
     this.props.history.push('/dashboardskilluser');    
     }
 
-    onRemove = () => {
+    onRemove = (skillUser) => {
         this.props.startRemoveSkillUser({id: this.props.skillUser.id});
         this.props.history.push('/dashboardskilluser'); 
     }
@@ -18,7 +18,7 @@ export class EditSkillUserPage extends React.Component {
             <div>
                 <div className = "page-header">
                     <div className="content-container">
-                        <h1 className="page-header__title">Edit Your Skills</h1>
+                        <h1 className="page-header__title">Edit User</h1>
                     </div>
                 </div>
                 <div className="content-container">
@@ -26,7 +26,7 @@ export class EditSkillUserPage extends React.Component {
                         skillUser={this.props.skillUser}
                         onSubmit = {this.onSubmit}
                     />
-                    <button className="button button--secondary" onClick = {this.onRemove}>Remove Skill User</button>
+                    <button className = "button button--secondary" onClick={this.onRemove}>Remove User</button>
                 </div>
 
             </div>
@@ -44,7 +44,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
     return {
         startEditSkillUser: (id, skillUser) => dispatch(startEditSkillUser(id, skillUser)),
-        startRemoveSkillUser: (data) => dispatch(startRemoveSkillUser(data))
+        startRemoveSkillUser: (id) => dispatch(startRemoveSkillUser({id}))
     };
 };
 
