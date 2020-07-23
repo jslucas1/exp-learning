@@ -1,8 +1,8 @@
 import database from '../firebase/firebase';
 
-export const addSkillUser = (user) => ({
-    type: 'ADD_USER',
-    user
+export const addSkillUser = (skillUser) => ({
+    type: 'ADD_SKILL_USER',
+    skillUser
 });
 
 export const startAddSkillUser = (userData = {}) => {
@@ -12,19 +12,19 @@ export const startAddSkillUser = (userData = {}) => {
             userName = '', 
             userEmail = '' 
         } = userData;
-        const user = {userName, userEmail};
+        const skillUser = {userName, userEmail};
         
-        return database.ref(`SkillUsers/${uid}`).push(user).then((ref)=>{
+        return database.ref(`SkillUsers`).push(skillUser).then((ref)=>{
             dispatch(addSkillUser({
                 id: ref.key,
-                ...user
+                ...skillUser
             }));
         });
     };
 };
 
 export const removeSkillUser = ({id} = {}) => ({
-    type: 'REMOVE_USER',
+    type: 'REMOVE_SKILL_USER',
     id
 });
 
@@ -38,7 +38,7 @@ export const startRemoveSkillUser = ({id} = {}) => {
 };
 
 export const editSkillUser = (id, updates) => ({
-    type: 'EDIT_USER',
+    type: 'EDIT_SKILL_USER',
     id,
     updates
 });
@@ -52,26 +52,27 @@ export const startEditSkillUser = (id, updates) => {
     }
 };
 
-export const setSkillUsers = (users) => ({
-    type: 'SET_USERS',
-    users
+export const setSkillUsers = (skillUsers) => ({
+    type: 'SET_SKILL_USERS',
+    skillUsers
 });
 
 export const startSetSkillUsers = () => {
     console.log('made it to startSetUsers');
     return (dispatch, getState) => {
-        const uid=getState().auth.uid;
+        const uid=getState().auth.uid
         return database.ref(`SkillUsers`).once('value').then((snapshot) => {
             const users = [];
 
+
             snapshot.forEach((childSnapshot) => {
-                users.push({
+                skillUsers.push({
                     id: childSnapshot.key,
                     ...childSnapshot.val()
                 });
             });
 
-            dispatch(setSkillUsers(users));
+            dispatch(setSkillUsers(skillUsers));
         });
     }
 };
