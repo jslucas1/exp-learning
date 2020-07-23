@@ -30,8 +30,9 @@ export const removeSkillUser = ({id} = {}) => ({
 
 export const startRemoveSkillUser = ({id} = {}) => {
     return (dispatch, getState) => {
+        console.log('in startRemove and the id is', id);
         const uid=getState().auth.uid;
-        return database.ref(`SkillUsers/${uid}`).remove().then(() => {
+        return database.ref(`SkillUsers/${id}`).remove().then(() => {
             dispatch(removeSkillUser({id}));
         });
     }
@@ -62,7 +63,7 @@ export const startSetSkillUsers = () => {
     return (dispatch, getState) => {
         const uid=getState().auth.uid
         return database.ref(`SkillUsers`).once('value').then((snapshot) => {
-            const users = [];
+            const skillUsers = [];
 
 
             snapshot.forEach((childSnapshot) => {

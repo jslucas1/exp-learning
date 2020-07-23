@@ -18,7 +18,7 @@ const skillUsersReducer = (state = skillUsersReducerDefaultState, action) => {
                 }
             });
         case 'SET_SKILL_USERS':
-            return action.users;
+            return action.skillUsers;
         case 'ADD_SKILL':
             return {
                 ...user,

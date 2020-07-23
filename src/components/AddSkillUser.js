@@ -1,11 +1,11 @@
 import React from 'react';
 import SkillUserForm from './SkillUserForm';
 import {connect} from 'react-redux';
-import startAddSkillUser  from '../actions/skillusers';
+import {startAddSkillUser}  from '../actions/skillusers';
 
 export class AddSkillUserPage extends React.Component {
-    onSubmit = (user) => {
-        this.props.startAddSkillUser(user);
+    onSubmit = (skillUser) => {
+        this.props.startAddSkillUser(skillUser);
         this.props.history.push('/dashboardskilluser');
     };
     render() {
@@ -29,7 +29,7 @@ export class AddSkillUserPage extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        startAddSkillUser: (user) => dispatch(startAddSkillUser(user))
+        startAddSkillUser: (skillUser) => dispatch(startAddSkillUser(skillUser))
     };
 };
 

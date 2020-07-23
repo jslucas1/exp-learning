@@ -9,7 +9,7 @@ export class EditSkillUserPage extends React.Component {
     this.props.history.push('/dashboardskilluser');    
     }
 
-    onRemove = (skillUser) => {
+    onRemove = () => {
         this.props.startRemoveSkillUser({id: this.props.skillUser.id});
         this.props.history.push('/dashboardskilluser'); 
     }
