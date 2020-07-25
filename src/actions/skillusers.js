@@ -1,8 +1,12 @@
 import database from '../firebase/firebase';
+import {v4 as uuidv4} from 'uuid';
+import skillsReducer from '../reducers/skills';
 
-export const addSkillUser = (skillUser) => ({
+
+
+export const addSkillUser = ({...skillUser}) => ({
     type: 'ADD_SKILL_USER',
-    skillUser
+    ...skillUser
 });
 
 export const startAddSkillUser = (userData = {}) => {
@@ -12,12 +16,11 @@ export const startAddSkillUser = (userData = {}) => {
             userName = '', 
             userEmail = '' 
         } = userData;
-        const skillUser = {userName, userEmail};
+        const skillUser = {userName, userEmail, uid};
         
         return database.ref(`SkillUsers`).push(skillUser).then((ref)=>{
             dispatch(addSkillUser({
-                id: ref.key,
-                ...skillUser
+                ...skillUser,
             }));
         });
     };
@@ -78,45 +81,3 @@ export const startSetSkillUsers = () => {
     }
 };
 
-export const addSkill = (userID,{skillName, proficiency, goalProf}) => ({
-    type: 'ADD_SKILL',
-    userID,
-    skillName,
-    proficiency,
-    goalProf
-});
-export const startAddSkill = (userData = {}) => {
-    return (dispatch, getState) => {
-        const uid=getState().auth.uid;
-        const {       
-            userName = '', 
-            skill:{
-            skillName='',
-            proficiency= 0,
-            goalProf=0,
-            note= '',
-            }
-        } = userData;
-        const user = {userName, skill:{skillName, proficiency, goalProf, note}};
-        
-        return database.ref(`SkillUsers/${uid}/skill`).push(user).then((ref)=>{
-            dispatch(addSkill({
-                id: ref.key,
-                ...user
-            }));
-        });
-    };
-};
-
-export const editSkill = (userID,{skillName, updates}) => ({
-    type: 'EDIT_SKILL',
-    userID,
-    skillName,
-    updates
-});
-
-export const removeSkill = (userID,{skillName}) => ({
-    type: 'REMOVE_SKILL',
-    userID,
-    skillName
-});

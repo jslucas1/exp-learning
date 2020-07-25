@@ -1,39 +1,43 @@
 import React from 'react';
+import database from '../firebase/firebase';
 
 export default class SkillItemForm extends React.Component {
     constructor(props) {
         super(props);
 
+
         this.state = {
-            userName:props.skillUser ? props.skillUser.userName : '',
-            skills:[{
+                
                 skillName: props.skillName,
-                proficiency: props.proficiency,
-                goalProf: props.goalProf,
-                note: props.note
-            }],
+                proficiency: 1,
+                goalProf: 1,
+                note: props.note,
+                uid: '',
             error: ''
         };
     }
 
 
-    onSkillsChange = (e) => {
-        const skills = e.target.value;
-        this.setState(() => ({...skills}));
-    };
+    //onSkillsChange = (e) => {
+    //    const skills = e.target.value;
+    //    this.setState(() => ({...skills}));
+    //};
 
     onNameChange = (e) => {
         const skillName = e.target.value;
         this.setState(() => ({skillName}));
+        console.log(skillName)
     };
     onProfChange = (e) => {
         const proficiency = e.target.value;
         this.setState(() => ({proficiency}));
+        console.log(proficiency)
     };
 
     onGoalProfChange = (e) => {
         const goalProf = e.target.value;
         this.setState(() => ({goalProf}));
+        console.log(goalProf)
     };
     onNoteChange = (e) => {
         const note = e.target.value;
@@ -46,12 +50,17 @@ export default class SkillItemForm extends React.Component {
 
             this.setState(({error: ''}));
 
-            this.props.onSubmit({
-                skillName: this.state.skills.skillName,
-                proficiency: this.state.skills.proficiency,
-                goalProf: this.state.skills.goalProf,
-                note: this.state.skills.note
-            })
+            console.log(this.state.skillName);
+            console.log(this.state.proficiency);
+            
+
+            this.props.onSubmit({skill:{
+                skillName: this.state.skillName,
+                proficiency: this.state.proficiency,
+                goalProf: this.state.goalProf,
+                note: this.state.note,
+                uid: ''
+            }})
 
         
     }
@@ -59,18 +68,22 @@ export default class SkillItemForm extends React.Component {
         return (
                     <form className="form" onSubmit={this.onSubmit}>
                     {this.state.error && <p className="form__error">{this.state.error}</p>}
-                    <select value={this.state.skills.skillName} onChange={this.onNameChange}>
-                        <option value="OOP">OOP</option>
-                        <option value="JavaScript">JavaScript</option>
-                    </select>
-                    <select value={this.state.skills.proficiency} onChange={this.onProfChange}>
-                        <option>1</option>
+                    <input 
+                        type="text"
+                        placeholder="Skill"
+                        autoFocus
+                        className="text-input"
+                        value={this.state.skillName} 
+                        onChange={this.onNameChange}>
+                    </input>
+                    <select value={this.state.proficiency} onChange={this.onProfChange}>
+                        <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <select value={this.state.skills.goalProf} onChange={this.onGoalProfChange}>
+                    <select value={this.state.goalProf} onChange={this.onGoalProfChange}>
                         <option>1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -82,7 +95,7 @@ export default class SkillItemForm extends React.Component {
                         placeholder="Note"
                         autoFocus
                         className="text-input"
-                        value={this.state.skills.note}
+                        value={this.state.note}
                         onChange={this.onNoteChange}
                     />
                     <div>

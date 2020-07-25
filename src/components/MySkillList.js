@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import SkillItem from './SkillItem';
-import selectSkillUsers from '../selectors/skillusers';
+import {getVisibleSkills} from '../selectors/skillusers'; 
 
 export const MySkillsList = (props) => (
     <div className="content-container">
@@ -13,13 +13,13 @@ export const MySkillsList = (props) => (
         </div>
         <div className = "list-body">
             {
-                props.skillUsers.length === 0 ? (
+                props.skills.length === 0 ? (
                     <div className="list-item list-item--message">
                         <span>No skills yet</span>
                     </div>
                 ) : (
-                        props.skillUsers.map((skillUser) => {
-                        return <SkillItem key={skillUser.id} {...skillUser} />;
+                        props.skills.map((skill) => {
+                        return <SkillItem key={skill.id} {...skill} />;
                         })
                     )
             }
@@ -32,7 +32,7 @@ export const MySkillsList = (props) => (
 
 const mapStateToProps = (state) => {
     return{
-        skillUsers: selectSkillUsers(state.skillUsers),
+        skills: getVisibleSkills(state.skills, state.skillUsers),
     }
 };
 

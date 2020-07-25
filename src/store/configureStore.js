@@ -4,6 +4,7 @@ import authReducer from '../reducers/auth';
 import usersReducer from '../reducers/users';
 import teammatesReducer from '../reducers/teammates';
 import skillUsersReducer from '../reducers/skillusers';
+import skillsReducer from '../reducers/skills';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -13,7 +14,8 @@ export default () => {
       auth: authReducer,
       users: usersReducer,
       teammates: teammatesReducer,
-      skillUsers: skillUsersReducer
+      skillUsers: skillUsersReducer,
+      skills: skillsReducer
     }),
     composeEnhancers(applyMiddleware(thunk))
   );

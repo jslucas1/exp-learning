@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import SkillUserListItem from './SkillUserListItem';
-import selectSkillUsers from '../selectors/skillusers';
+import {getVisibleSkillUsers} from '../selectors/skillusers';
 
 export const SkillUserList = (props) => (
     <div className="content-container">
@@ -19,7 +19,7 @@ export const SkillUserList = (props) => (
                     </div>
                 ) : (
                         props.skillUsers.map((skillUser) => {
-                        return <SkillUserListItem key={skillUser.id} {...skillUser} />;
+                        return <SkillUserListItem key={skillUser.uid} {...skillUser} />;
                         })
                     )
             }
@@ -32,7 +32,7 @@ export const SkillUserList = (props) => (
 
 const mapStateToProps = (state) => {
     return{
-        skillUsers: selectSkillUsers(state.skillUsers),
+        skillUsers: getVisibleSkillUsers(state.skillUsers),
     }
 };
 
