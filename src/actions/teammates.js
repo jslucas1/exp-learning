@@ -10,11 +10,12 @@ export const startAddTeammate = (teammateData = {}) => {
         const uid=getState().auth.uid;
         const {       
             teammateName = '', 
-            teammateEmail = '' 
+            teammateEmail = '',
+            userID360 = '', 
         } = teammateData;
         const teammate = {teammateName, teammateEmail};
         
-        return database.ref(`users/${uid}/teammates`).push(teammate).then((ref)=>{
+        return database.ref(`users/${userID360}/teammates`).push(teammate).then((ref)=>{
             dispatch(addTeammate({
                 id: ref.key,
                 ...teammate
@@ -31,7 +32,7 @@ export const removeTeammate = ({id} = {}) => ({
 export const startRemoveTeammate = ({id} = {}) => {
     return (dispatch, getState) => {
         const uid=getState().auth.uid;
-        return database.ref(`users/${uid}/teammates/${id}`).remove().then(() => {
+        return database.ref(`users/${userID360}/teammates/${id}`).remove().then(() => {
             dispatch(removeTeammate({id}));
         });
     }
@@ -46,7 +47,7 @@ export const editTeammate = (id, updates) => ({
 export const startEditTeammate = (id, updates) => {
     return (dispatch, getState) => {
         const uid=getState().auth.uid;
-        return database.ref(`users/${uid}/teammates/${id}`).update(updates).then(() => {
+        return database.ref(`users/${userID360}/teammates/${id}`).update(updates).then(() => {
             dispatch(editTeammate(id, updates));
         });
     }
@@ -65,7 +66,7 @@ export const startSetTeammates = () => {
             const teammates = [];
 
             snapshot.forEach((childSnapshot) => {
-                users.push({
+                teammates.push({
                     id: childSnapshot.key,
                     ...childSnapshot.val()
                 });

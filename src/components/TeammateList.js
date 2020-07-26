@@ -18,8 +18,8 @@ export const TeammateList = (props) => (
                         <span>No Teammates</span>
                     </div>
                 ) : (
-                        props.users.map((teammate) => {
-                        return <TeammateListItem key={teammate.id} {...teammate} />;
+                        props.teammates.map((teammate) => {
+                        return <TeammateListItem key={teammate.id} {...teammate} {...props.userID360} />;
                         })
                     )
             }
@@ -31,10 +31,11 @@ export const TeammateList = (props) => (
     </div>
 );
 
-const mapStateToProps = (state) => {
-    const uid=state.auth.uid;
+const mapStateToProps = (state, props) => {
+
+    const userID360 = props.userID360
     return{
-        teammates: selectTeammates(uid, state.teammates),
+        teammates: selectTeammates(userID360, state.teammates),
     }
 };
 

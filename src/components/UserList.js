@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import UserListItem from './UserListItem';
 import selectUsers from '../selectors/users';
-import TeammateList from './TeammateList';
 
 export const UserList = (props) => (
     <div className="content-container">
@@ -28,7 +27,6 @@ export const UserList = (props) => (
         <div className="page-header__actions">
                     <Link className="button" to="/createuser">Add User</Link>
         </div>
-        <TeammateList /> 
     </div>
 );
 

@@ -7,6 +7,7 @@ export default class TeammateForm extends React.Component {
         this.state = {
             teammateName: props.teammate ? props.teammate.teammateName : '',
             teammateEmail: props.teammate ? props.teammate.teammateEmail : '',
+            userID360: props.teammate ? props.teammate.userID360 : '',
             error: ''
         };
     }
