@@ -9,6 +9,7 @@ export class AddTeammatePage extends React.Component {
         this.props.history.push('/');
     };
     render() {
+        let userID360 = this.props.match.params.userID360;
         return (
             <div>
                 <div className="page-header">
@@ -17,7 +18,7 @@ export class AddTeammatePage extends React.Component {
                     </div>
                 </div>
                 <div className="content-container">
-                    <TeammateForm 
+                    <TeammateForm userID360 = {userID360}
                     onSubmit = {this.onSubmit}
                     />
                 </div>

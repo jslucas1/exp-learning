@@ -3,11 +3,10 @@ import React from 'react';
 export default class TeammateForm extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             teammateName: props.teammate ? props.teammate.teammateName : '',
             teammateEmail: props.teammate ? props.teammate.teammateEmail : '',
-            userID360: props.teammate ? props.teammate.userID360 : '',
+            userID360: props.userID360,
             error: ''
         };
     }
@@ -35,7 +34,8 @@ export default class TeammateForm extends React.Component {
 
             this.props.onSubmit({
                 teammateName: this.state.teammateName,
-                teammateEmail: this.state.teammateEmail
+                teammateEmail: this.state.teammateEmail,
+                userID360: this.props.userID360
             })
 
         }

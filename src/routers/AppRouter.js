@@ -32,7 +32,7 @@ const AppRouter = () => (
         <PrivateRoute path="/editskilluser/:id" component={EditSkillUserPage} />
         <PrivateRoute path="/addskill" component={AddSkill} />
         <PrivateRoute path="/editteammate/:id/:id" component={EditTeammatePage} />
-        <PrivateRoute path="/createteammate/:id" component={AddTeammatePage} />
+        <PrivateRoute path="/createteammate/:userID360" component={AddTeammatePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

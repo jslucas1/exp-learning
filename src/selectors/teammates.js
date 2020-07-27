@@ -1,9 +1,11 @@
 
 //Get Visible Teammates
-const getVisibleTeammates = (uid, teammates) => {
+const getVisibleTeammates = (userID360, teammates) => {
     return teammates.filter((teammate) => {
-        const isTeammate = uid ? teammates.uid: true; 
-       
+        let isTeammate = false;
+        if(userID360===teammate.userID360){
+            isTeammate = true;
+        }  
         return isTeammate;
     }).sort((a, b) => {
             return a.teammateName < b.teammateName ? 1 : -1

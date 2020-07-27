@@ -25,7 +25,7 @@ export const TeammateList = (props) => (
             }
         </div>
         <div className="page-header__actions">
-                    <Link className="button" to="/createteammate/${state.auth.id}">Add Teammate</Link>
+                    <Link className="button" to={`/createteammate/${props.userID360}`}>Add Teammate</Link>
         </div>
         
     </div>
