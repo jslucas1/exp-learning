@@ -1,4 +1,5 @@
 import React from 'react';
+import MySkillList from './MySkillList';
 
 export default class SkillUserForm extends React.Component {
     constructor(props) {
@@ -40,8 +41,14 @@ export default class SkillUserForm extends React.Component {
         }
     }
     render() {
+        let userID = {};
+        console.log(this.props.user);
+        if(this.props.user){
+            userID = {userID: this.props.user.id};
+        } 
         return (
-                    <form className="form" onSubmit={this.onSubmit}>
+            <div>
+                <form className="form" onSubmit={this.onSubmit}>
                     {this.state.error && <p className="form__error">{this.state.error}</p>}
                     <input
                         type="text"
@@ -63,6 +70,11 @@ export default class SkillUserForm extends React.Component {
                         <button className="button">Save Skill User</button>
                     </div>
                 </form>
+                <div>
+                    <MySkillList {...userID}/>
+                </div>
+            </div>
+                    
         )
     }
 }

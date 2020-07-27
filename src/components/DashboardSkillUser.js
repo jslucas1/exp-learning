@@ -7,7 +7,6 @@ import MySkillList from '../components/MySkillList';
 const DashboardSkillUser = () => (
   <div>
     <SkillUserList />
-    <MySkillList />
   </div>
 );
 
