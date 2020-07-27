@@ -2,15 +2,13 @@ import React from 'react';
 
 const SkillItem = ({skillName, proficiency, goalProf}) => {
     return (
-        <div>
+        <Link className = "list-item" to= {`/editskilluser/${id}`}>
             <div>
-                <h3>{skillName}</h3>
+                <h3 className="list-item__title">{skillName}</h3>
+                <h2 className="list-item__data">{proficiency}</h2>
             </div>
-            <div>
-                <li>Proficiency: {proficiency}</li>
-                <li>Goal Proficency: {goalProf}</li>
-            </div>
-        </div>
+            <h3 className="list-item__data">{goalProf}</h3>
+        </Link>
         
     )
 }

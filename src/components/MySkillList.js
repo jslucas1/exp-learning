@@ -19,7 +19,7 @@ export const MySkillsList = (props) => (
                     </div>
                 ) : (
                         props.skills.map((skill) => {
-                        return <SkillItem key={skill.id} {...skill} />;
+                        return <SkillItem key={skill.id} {...skill} {...props.userID}/>;
                         })
                     )
             }
@@ -32,7 +32,7 @@ export const MySkillsList = (props) => (
 
 const mapStateToProps = (state) => {
     return{
-        skills: getVisibleSkills(state.skills, state.skillUsers),
+        skills: getVisibleSkills(state.skills, state.userID),
     }
 };
 

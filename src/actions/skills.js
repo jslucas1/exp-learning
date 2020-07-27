@@ -10,26 +10,73 @@ export const startAddSkill = (userData = {}) => {
     return (dispatch, getState) => {
         const uuid = uuidv4();
         const uid=getState().auth.uid;
-        const user = {...userData, uid}
+        const {
+            skillName = '',
+            proficiency = 0,
+            goalProf = 0,
+            note = '',
+            userID = ''
+        } = userData;
+        const user = {skillName, proficiency, goalProf, note, userID}
         
-        return database.ref(`Skills/${uuid}`).push(user).then((ref)=>{
-            dispatch(addSkill(
-                ref.key,
-                ...user
-            ));
+        return database.ref(`Skills`).push(user).then((ref)=>{
+            dispatch(addSkill({
+                id: ref.key,
+                ...user,
+                
+            }));
         });
     };
 };
 
-export const editSkill = ({...skillUser},{skillName, updates}) => ({
+export const startEditSkill = (id, updates) => {
+    return (dispatch, getState) => {
+        const uid=getState().auth.uid;
+        return database.ref(`Skills/${id}`).update(updates).then(() => {
+            dispatch(editSkills(id, updates));
+        });
+    }
+};
+
+export const editSkill = ({id, updates}) => ({
     type: 'EDIT_SKILL',
-    ...skillUser,
-    skillName,
+    id,
     updates
 });
 
-export const removeSkill = ({skillUser},{skillName}) => ({
+export const startRemoveSkill = ({id} = {}) => {
+    return (dispatch, getState) => {
+        const uid=getState().auth.uid;
+        return database.ref(`Skills/${id}`).remove().then(() => {
+            dispatch(removeSkills({id}));
+        });
+    }
+};
+
+export const removeSkill = ({id}) => ({
     type: 'REMOVE_SKILL',
-    ...skillUser,
-    skillName
+    id
 });
+
+export const setSkills = (skills) => ({
+    type: 'SET_SKILLS',
+    skills
+});
+
+export const startSetSkills = () => {
+    return (dispatch, getState) => {
+        const uid=getState().auth.uid;
+        return database.ref(`Skills`).once('value').then((snapshot) => {
+            const skills = [];
+
+            snapshot.forEach((childSnapshot) => {
+                teammates.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                });
+            });
+
+            dispatch(setSkills(skills));
+        });
+    }
+};

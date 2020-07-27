@@ -6,16 +6,18 @@ export default class SkillItemForm extends React.Component {
         super(props);
 
 
+
         this.state = {
                 
-                skillName: props.skillName,
+                skillName: props.skill ? props.skill.skillName : '',
                 proficiency: 1,
-                goalProf: 1,
-                note: props.note,
-                uid: '',
+                goalProf: 2,
+                note: props.skill ? props.skill.note : '',
+                userID: props.skill ? props.skill.userID : props.userID,
             error: ''
         };
     }
+
 
 
     //onSkillsChange = (e) => {
@@ -50,17 +52,13 @@ export default class SkillItemForm extends React.Component {
 
             this.setState(({error: ''}));
 
-            console.log(this.state.skillName);
-            console.log(this.state.proficiency);
-            
-
-            this.props.onSubmit({skill:{
+            this.props.onSubmit({
                 skillName: this.state.skillName,
                 proficiency: this.state.proficiency,
                 goalProf: this.state.goalProf,
                 note: this.state.note,
-                uid: ''
-            }})
+                userID: this.state.userID
+            })
 
         
     }
