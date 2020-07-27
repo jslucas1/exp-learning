@@ -10,8 +10,8 @@ export default class SkillItemForm extends React.Component {
         this.state = {
                 
                 skillName: props.skill ? props.skill.skillName : '',
-                proficiency: 1,
-                goalProf: 2,
+                proficiency: props.skill ? props.skill.proficiency : 1,
+                goalProf: props.skill ? props.skill.goalProf : 2,
                 note: props.skill ? props.skill.note : '',
                 userID: props.skill ? props.skill.userID : props.userID,
             error: ''
