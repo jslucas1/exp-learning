@@ -5,7 +5,7 @@ import {startEditTeammate, startRemoveTeammate} from '../actions/teammates';
 
 export class EditTeammatePage extends React.Component {
     onSubmit = (teammate) => {
-    this.props.startEditUser(this.props.teammate.id, teammate);
+    this.props.startEditTeammate(this.props.teammate.id, teammate);
     this.props.history.push('/');    
     }
 
@@ -23,7 +23,7 @@ export class EditTeammatePage extends React.Component {
                 </div>
                 <div className="content-container">
                     <TeammateForm
-                        user={this.props.teammate}
+                        teammate={this.props.teammate}
                         onSubmit = {this.onSubmit}
                     />
                     <button className="button button--secondary" onClick = {this.onRemove}>Remove Teammate</button>

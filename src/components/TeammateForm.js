@@ -3,10 +3,11 @@ import React from 'react';
 export default class TeammateForm extends React.Component {
     constructor(props) {
         super(props);
+        console.log('in the constructor', props.userID360);
         this.state = {
             teammateName: props.teammate ? props.teammate.teammateName : '',
             teammateEmail: props.teammate ? props.teammate.teammateEmail : '',
-            userID360: props.userID360,
+            userID360: props.teammate ? props.teammate.userID360 : props.userID360,
             error: ''
         };
     }
@@ -25,6 +26,8 @@ export default class TeammateForm extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
 
+        console.log('in the submit', this.state.userID360);
+
         if(!this.state.teammateName || !this.state.teammateEmail){
             //Set error state
             this.setState(({error: 'Please provide descritpion and amount'}));
@@ -35,7 +38,7 @@ export default class TeammateForm extends React.Component {
             this.props.onSubmit({
                 teammateName: this.state.teammateName,
                 teammateEmail: this.state.teammateEmail,
-                userID360: this.props.userID360
+                userID360: this.state.userID360
             })
 
         }
