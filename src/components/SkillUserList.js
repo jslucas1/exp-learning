@@ -19,7 +19,7 @@ export const SkillUserList = (props) => (
                     </div>
                 ) : (
                         props.skillUsers.map((skillUser) => {
-                        return <SkillUserListItem key={skillUser.uid} {...skillUser} />;
+                        return <SkillUserListItem key={skillUser.id} {...skillUser} />;
                         })
                     )
             }

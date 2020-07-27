@@ -14,6 +14,8 @@ const skillsReducer = (state=[], action) => {
             })
         case 'REMOVE_SKILL':
             state.filter(({id}) => id != action.id);
+        case 'SET_SKILLS':
+                return action.skills;
         default: return state;
     }
 

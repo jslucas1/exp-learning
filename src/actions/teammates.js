@@ -20,9 +20,9 @@ export const startAddTeammate = (teammateData = {}) => {
             growth = '',
             comments = ''
         } = teammateData;
+
         const teammate = {teammateName, teammateEmail, userID360, technical, analytical, communication, participation, strengths, growth, comments};
-        
-       // return database.ref(`users/${userID360}/teammates`).push(teammate).then((ref)=>{
+
         return database.ref(`teammates`).push(teammate).then((ref)=>{
             dispatch(addTeammate({
                 id: ref.key,

@@ -83,7 +83,6 @@ export default class UserForm extends React.Component {
         const analytical = 'ANALYTICAL - performs independent research, thinks innovatively, asks relevant questions, understands the project and its deliverables';
         const technical = 'TECHNICAL - understands the clilents tecnical environment and needs, understands and follows technical methodology steps, and is learning about new/existing technology required for the project';
         let userID360 = {};
-        console.log(this.props.user);
         if(this.props.user){
             userID360 = {userID360: this.props.user.id};
         } 
