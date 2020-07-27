@@ -56,7 +56,6 @@ export default class UserForm extends React.Component {
     }
     render() {
         let userID360 = {};
-        console.log(this.props.user);
         if(this.props.user){
             userID360 = {userID360: this.props.user.id};
         } 
