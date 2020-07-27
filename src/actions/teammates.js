@@ -12,8 +12,15 @@ export const startAddTeammate = (teammateData = {}) => {
             teammateName = '', 
             teammateEmail = '',
             userID360 = '', 
+            technical = '',
+            analytical = '',
+            communication = '',
+            participation = '',
+            strengths = '',
+            growth = '',
+            comments = ''
         } = teammateData;
-        const teammate = {teammateName, teammateEmail, userID360};
+        const teammate = {teammateName, teammateEmail, userID360, technical, analytical, communication, participation, strengths, growth, comments};
         
        // return database.ref(`users/${userID360}/teammates`).push(teammate).then((ref)=>{
         return database.ref(`teammates`).push(teammate).then((ref)=>{

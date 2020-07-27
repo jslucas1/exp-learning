@@ -10,9 +10,14 @@ export const startAddUser = (userData = {}) => {
         const uid=getState().auth.uid;
         const {       
             userName = '', 
-            userEmail = '' 
+            userEmail = '',
+            technical = '',
+            analytical = '',
+            participation = '',
+            communication = '',
+            comments = '' 
         } = userData;
-        const user = {userName, userEmail};
+        const user = {userName, userEmail, technical, analytical, participation, communication, comments};
         
         return database.ref(`users`).push(user).then((ref)=>{
             dispatch(addUser({
