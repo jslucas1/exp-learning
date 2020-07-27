@@ -11,6 +11,7 @@ export class AddSkillPage extends React.Component {
     };
     render() {
         let userID = this.props.match.params.userID;
+        console.log('on the add skill page this should be the user ID', userID)
         return (
             <div>
                 <div className="page-header">

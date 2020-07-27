@@ -25,14 +25,15 @@ export const MySkillsList = (props) => (
             }
         </div>
         <div className="page-header__actions">
-                    <Link className="button" to="/addskill">Add Skill</Link>
+                    <Link className="button" to={`/addskill/${props.userID}`}>Add Skill</Link>
         </div>
     </div>
 );
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+    const userID = props.userID;
     return{
-        skills: getVisibleSkills(state.skills, state.userID),
+        skills: getVisibleSkills(state.skills, userID),
     }
 };
 

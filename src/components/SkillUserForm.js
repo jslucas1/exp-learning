@@ -42,10 +42,11 @@ export default class SkillUserForm extends React.Component {
     }
     render() {
         let userID = {};
-        console.log(this.props.user);
-        if(this.props.user){
-            userID = {userID: this.props.user.id};
+        console.log('on the skill user page. shoule be the user',this.props.skillUser);
+        if(this.props.skillUser){
+            userID = {userID: this.props.skillUser.id};
         } 
+
         return (
             <div>
                 <form className="form" onSubmit={this.onSubmit}>
