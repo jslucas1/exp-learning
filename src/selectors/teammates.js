@@ -3,7 +3,7 @@
 const getVisibleTeammates = (userID360, teammates) => {
     return teammates.filter((teammate) => {
         let isTeammate = false;
-        if(userID360===teammate.userID360){
+        if(userID360 && userID360===teammate.userID360){
             isTeammate = true;
         }  
         return isTeammate;

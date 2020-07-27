@@ -55,7 +55,11 @@ export default class UserForm extends React.Component {
         }
     }
     render() {
-        const userID360 = {userID360: this.props.user.id};
+        let userID360 = {};
+        console.log(this.props.user);
+        if(this.props.user){
+            userID360 = {userID360: this.props.user.id};
+        } 
         return (
                 <div>
                     <form className="form" onSubmit={this.onSubmit}>
