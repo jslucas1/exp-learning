@@ -26,7 +26,6 @@ export class EditSkillUserPage extends React.Component {
                         skillUser={this.props.skillUser}
                         onSubmit = {this.onSubmit}
                     />
-                    <button className = "button button--secondary" onClick={this.onRemove}>Remove User</button>
                 </div>
 
             </div>

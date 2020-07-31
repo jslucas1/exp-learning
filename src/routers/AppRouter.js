@@ -10,6 +10,7 @@ import AddSkill from '../components/AddSkill';
 import AddTeammatePage from '../components/AddTeammatePage';
 import EditUserPage from '../components/EditUserPage';
 import EditSkillUserPage from '../components/EditSkillUserPage';
+import EditSkillItemPage from '../components/EditSkillItemPage';
 import EditTeammatePage from '../components/EditTeammatePage';
 import NotFoundPage from '../components/NotFoundPage';
 import LoginPage from '../components/LoginPage';
@@ -28,7 +29,8 @@ const AppRouter = () => (
         <PrivateRoute path="/dashboardskilluser" component={DashboardSkillUser} />
         <PrivateRoute path="/createuser" component={AddUserPage} />
         <PrivateRoute path="/createskilluser" component={AddSkillUserPage} />
-        <PrivateRoute path="/edituser/:id" component={EditUserPage} />
+        <PrivateRoute path="/edituser/:id" component={EditUserPage} /> 
+        <PrivateRoute path="/editskill/:id" component={EditSkillItemPage}/>
         <PrivateRoute path="/editskilluser/:id" component={EditSkillUserPage} />
         <PrivateRoute path="/addskill/:userID" component={AddSkill} />
         <PrivateRoute path="/editteammate/:id" component={EditTeammatePage} />

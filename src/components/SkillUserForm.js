@@ -45,6 +45,7 @@ export default class SkillUserForm extends React.Component {
         console.log('on the skill user page. shoule be the user',this.props.skillUser);
         if(this.props.skillUser){
             userID = {userID: this.props.skillUser.id};
+            console.log(userID);
         } 
 
         return (
@@ -71,6 +72,9 @@ export default class SkillUserForm extends React.Component {
                         <button className="button">Save Skill User</button>
                     </div>
                 </form>
+                <div>
+                     <button className = "button button--secondary" onClick={this.onRemove}>Remove User</button>
+                </div>
                 <div>
                     <MySkillList {...userID}/>
                 </div>
