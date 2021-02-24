@@ -33,14 +33,15 @@ export const startEditSkill = (id, updates) => {
     return (dispatch, getState) => {
         const uid=getState().auth.uid;
         return database.ref(`Skills/${id}`).update(updates).then(() => {
-            dispatch(editSkills(id, updates));
+            console.log('updates:', updates);
+            dispatch(editSkill(id, updates));
         });
     }
 };
 
-export const editSkill = ({id, updates}) => ({
+export const editSkill = ({userID, updates}) => ({
     type: 'EDIT_SKILL',
-    id,
+    userID,
     updates
 });
 
@@ -70,7 +71,7 @@ export const startSetSkills = () => {
             const skills = [];
 
             snapshot.forEach((childSnapshot) => {
-                teammates.push({
+                skills.push({
                     id: childSnapshot.key,
                     ...childSnapshot.val()
                 });

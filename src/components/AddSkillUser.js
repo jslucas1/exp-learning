@@ -9,6 +9,7 @@ export class AddSkillUserPage extends React.Component {
         this.props.history.push('/dashboardskilluser');
     };
     render() {
+        let userID = this.props.match.params.userID;
         return (
             <div>
                 <div className="page-header">
@@ -19,6 +20,7 @@ export class AddSkillUserPage extends React.Component {
                 <div className="content-container">
                     <SkillUserForm 
                     onSubmit = {this.onSubmit}
+                    userID = {userID}
                     />
                 </div>
             </div>

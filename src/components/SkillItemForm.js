@@ -10,11 +10,11 @@ export default class SkillItemForm extends React.Component {
         this.state = {
                 
                 skillName: props.skill ? props.skill.skillName : '',
-                proficiency: 1,
-                goalProf: 2,
+                proficiency: props.skill ? props.skill.proficiency : 1,
+                goalProf: props.skill ? props.skill.goalProf : 2,
                 note: props.skill ? props.skill.note : '',
-                userID: props.skill ? props.skill.userID : props.userID,
-            error: ''
+                userID: props.userID,
+                error: ''
         };
     }
 
@@ -28,29 +28,27 @@ export default class SkillItemForm extends React.Component {
     onNameChange = (e) => {
         const skillName = e.target.value;
         this.setState(() => ({skillName}));
-        console.log(skillName)
     };
     onProfChange = (e) => {
         const proficiency = e.target.value;
         this.setState(() => ({proficiency}));
-        console.log(proficiency)
     };
 
     onGoalProfChange = (e) => {
         const goalProf = e.target.value;
         this.setState(() => ({goalProf}));
-        console.log(goalProf)
     };
     onNoteChange = (e) => {
         const note = e.target.value;
         this.setState(()=> ({note}));
-        console.log(note);
     }
 
     onSubmit = (e) => {
         e.preventDefault();
 
             this.setState(({error: ''}));
+
+            console.log('Name:', this.state.skillName, ' Prof:', this.state.proficiency, ' goal:', this.state.goalProf, ' note:', this.state.note, ' userID:', this.state.userID);
 
             this.props.onSubmit({
                 skillName: this.state.skillName,

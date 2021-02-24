@@ -19,6 +19,7 @@ export const MySkillsList = (props) => (
                     </div>
                 ) : (
                         props.skills.map((skill) => {
+                            console.log(props.userID);
                         return <SkillItem key={skill.id} {...skill} {...props.userID}/>;
                         })
                     )
@@ -32,6 +33,7 @@ export const MySkillsList = (props) => (
 
 const mapStateToProps = (state, props) => {
     const userID = props.userID;
+    console.log('in myskilllist the userID being passed to getVisibleSkills is:', userID);
     return{
         skills: getVisibleSkills(state.skills, userID),
     }
